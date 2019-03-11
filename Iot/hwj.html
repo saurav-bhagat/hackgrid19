@@ -1,0 +1,83 @@
+<!Doctype html>
+<head>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <title>"Howzz the josh"</title>
+  <style>
+  h1{
+	font-size : 48px;
+  }
+  body{
+	background : url('back.jpg');
+	background-repeat: no-repeat;
+	background-size : cover;
+	color: white;
+  }
+	.button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  background-color: transparent; 
+  border: 2px solid #008CBA;
+}
+
+.button:hover {
+  background-color: #008CBA;
+  color: white;
+}
+input[type=text] {
+	width: 50%;
+  padding: 18px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.main-container{
+	width : 90vw;
+	margin : auto;
+	margin-top : 10%;
+}
+  </style>
+</head>
+<body>
+<div class="center">
+	<div align="center" class="form">
+       <form action="" method="get">
+	          <h1>We Care</h1>
+			  <div class="main-container">
+			  <input type="text" id="ip" class="ip" placeholder="Thingspeak Write API Key"></input><br>
+			  <br /><br />
+			  <button type="button" id="D2-on" class="button button1" >Activate Alert</button>
+			  <button type="button" id="D2-off" class="button button3" >Deactivate Alert</button>
+			  </div>
+	   </form>
+	<br><br>
+	</div>
+    </div>
+</body>	
+<script>
+		
+		
+		document.getElementById('D2-on').addEventListener('click', function() {
+				var ip = document.getElementById('ip').value;
+				var url = "http://api.thingspeak.com/update?api_key="+ ip + "&field2=1"
+				$.getJSON(url, function(data) {
+					console.log(data);
+				});
+		});
+		
+		document.getElementById('D2-off').addEventListener('click', function() {
+				var ip = document.getElementById('ip').value;
+				var url = "http://api.thingspeak.com/update?api_key="+ ip + "&field2=0"
+				$.getJSON(url, function(data) {
+					console.log(data);
+				});
+		});
+</script>		
+</html>
